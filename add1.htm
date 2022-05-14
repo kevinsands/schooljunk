@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<STYLE>
+INPUT {font-size:20pt;}
+TEXTAREA {font-size:20pt;}
+BUTTON {font-size:20pt;}
+
+
+</STYLE>
+</HEAD>
+<BODY>
+<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1">
+<script type="text/javascript" src="add1.json"></script>
+
+<script>
+var $ = function(id) {
+  return document.getElementById(id);
+
+}
+
+function press() {
+
+  var mx = Object.keys(list).length;
+
+  for (i=0; i<10; i++) {
+    ansx = "ans" + i.toString();
+    hidx = "hid" + i.toString();
+
+    if ($(ansx).value == $(hidx).value)
+      $(ansx).style.background="aqua";
+    else
+      $(ansx).style.background="red";
+ 
+  }
+}
+
+
+var list = JSON.parse(data);
+
+var mx = Object.keys(list).length;
+
+//alert("here");
+
+document.write("<BUTTON  id=btn1 onclick='press();'>Go</button><br>");
+
+
+for (i=0; i<10; i++) {
+
+k = Math.floor(Math.random()*(mx-1)) + 1;
+
+document.write("Problem: <INPUT readonly type=text width=10 maxlength=5 id=prob" + i.toString() + " value='" + list[k].prob + "'><BR>");
+prb="prob" + i.toString();
+//alert($(prb));c
+$(prb).style.background = "silver";
+
+document.write("Answer: <INPUT type=text tabindex=" + i.toString() + " id=ans" + i.toString() + " width=10 maxlength=5><BR>");
+
+document.write("<INPUT type=hidden id=hid" + i.toString() + " width=10 maxlength=5 value='" + list[k].ans + "'><BR><br>");
+} 
+
+$("ans0").focus();
+
+//<br><TEXTAREA id=t3 rows=10 cols=20 readonly></TEXTAREA>
+
+</script>
+
+`
+</BODY>
+
+</HTML>
